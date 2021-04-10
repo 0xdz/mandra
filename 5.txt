@@ -5,7 +5,7 @@ if(array_key_exists('watching',$_POST)){
 }
 //-----------------Password---------------------
 $passwordbyme = "0666da94c3b3217475d230d75dccf039"; //lol
-$_agent = true;
+$user_agent = true;
 $_unicode = 'UTF-8';
 $_action = 'Anonymizer';
 
